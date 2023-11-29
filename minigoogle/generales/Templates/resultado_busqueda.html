@@ -1,0 +1,152 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mini Google</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            transition: background-color 0.3s ease;
+        }
+
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 10px 0;
+        }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            text-decoration: none;
+            color: #333;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .search-form {
+            display: flex;
+            align-items: center;
+        }
+
+        input[type="text"] {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        button {
+            padding: 8px;
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 5px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+
+        .result-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .result-list li {
+            margin-bottom: 10px;
+        }
+
+        .url-container {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 15px;
+            text-decoration: none;
+            color: #333;
+        }
+
+        #modo-btn {
+            padding: 8px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .dark-mode {
+            background-color: #333;
+            color: #fff;
+        }
+    </style>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <a href="{% url 'mostrar_formulario_busqueda' %}" class="logo">Mini Google</a>
+            <form action="{% url 'mostrar_resultados' %}" method="GET" class="search-form">
+                <input type="text" name="consulta" placeholder="Buscar...">
+                <button type="submit"><i class="fas fa-search"></i></button>
+            </form>
+            <button id="modo-btn">Modo Humilde</button>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Resultados para: {{ consulta }}</h2>
+
+        <p>{{ cantidad_resultados }} urls encontradas en {{ tiempo_busqueda|floatformat:"10" }} segundos</p>
+
+        <ul class="result-list">
+            {% for url in resultados %}
+                <li>
+                    <div class="url-container">
+                        <a href="{{ url }}" class="url">{{ url }}</a>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+
+        <a href="{% url 'mostrar_formulario_busqueda' %}" class="back-link">Pagina principal</a>
+    </main>
+
+    <script>
+        document.getElementById("modo-btn").addEventListener("click", function() {
+            document.body.classList.toggle("dark-mode");
+            document.querySelectorAll("header, main, .url-container, .search-form button, .back-link, .logo").forEach(function(element) {
+                element.classList.toggle("dark-mode");
+            });
+        });
+    </script>
+</body>
+</html>

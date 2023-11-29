@@ -1,0 +1,65 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: #1a1a1a; /* Cambiado a un tono más oscuro de gris */
+    font-family: 'Arial', sans-serif; /* Añadido un tipo de fuente genérico */
+}
+
+.container {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px; /* Aumentado el padding para mayor espacio interior */
+    text-align: center; /* Centrado el texto dentro del contenedor */
+}
+
+input {
+    outline: none;
+    box-sizing: border-box;
+    height: 40px; /* Reducido el alto del input para un diseño más compacto */
+    width: 0;
+    padding: 0 15px;
+    color: #333; /* Cambiado a un tono más oscuro de gris */
+    border-radius: 20px; /* Reducido el radio para un aspecto más moderno */
+    font-size: 16px; /* Reducido el tamaño de la fuente */
+    border: 1px solid #333; /* Cambiado a un tono más oscuro de gris */
+    transition: all 0.7s ease;
+}
+
+::placeholder {
+    color: #666; /* Cambiado a un tono más oscuro de gris para el placeholder */
+}
+
+.btn {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 60px; /* Reducido el tamaño del botón para un diseño más equilibrado */
+    height: 60px;
+    background: #d50000;
+    line-height: 60px;
+    border-radius: 50%;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.btn i {
+    font-size: 20px; /* Reducido el tamaño del ícono */
+    color: #fff;
+    line-height: 60px;
+    transition: all 0.7s ease;
+}
+
+.container:hover input {
+    width: 250px; /* Reducido el ancho máximo en hover para un efecto más sutil */
+}
+
+.container:hover i {
+    transform: rotate(360deg); /* Corregido el valor para la rotación completa en hover */
+}
+
+.btn:hover {
+    background: #cc0000;
+}
